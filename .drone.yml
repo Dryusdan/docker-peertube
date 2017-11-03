@@ -1,8 +1,12 @@
 pipeline:
   build:
-    image: xataz/docker-drone-plugin
-    repo: dryusdan/peertube
+    image: plugins/docker
+    repo: registry.dryusdan.fr/dryusdan/peertube
+    registry: registry.dryusdan.fr
     action: build
+    tags: 
+      - latest
+    dockerfile: Dockerfile
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
