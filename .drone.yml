@@ -10,6 +10,9 @@ pipeline:
   push:
     image: xataz/docker-drone-plugin
     repo: registry.dryusdan.fr/dryusdan/peertube
+    registry: registry.dryusdan.fr
+    username: $PRIVATE_LOGIN
+    password: $PRIVATE_PASSWORD
     action: push
     when:
       branch: master
