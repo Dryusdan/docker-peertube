@@ -7,6 +7,8 @@ pipeline:
     tags: 
       - latest
     dockerfile: Dockerfile
+    commands:
+      - docker build -t registry.dryusdan.fr/dryusdan.peertube
 
   push:
     image: xataz/docker-drone-plugin
