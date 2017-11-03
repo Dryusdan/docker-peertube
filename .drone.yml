@@ -9,13 +9,8 @@ pipeline:
 
   push:
     image: xataz/docker-drone-plugin
-    repo: dryusdan/peertube
+    repo: registry.dryusdan.fr/dryusdan/peertube
     action: push
-    environment: 
-      - UID=991
-      - GID=991
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     when:
       branch: master
       event: [push, tag, deployment]
