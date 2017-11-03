@@ -1,0 +1,20 @@
+pipeline:
+  build:
+    image: xataz/docker-drone-plugin
+    repo: dryusdan/peertube
+    action: build
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  push:
+    image: xataz/docker-drone-plugin
+    repo: dryusdan/peertube
+    action: push
+    environment: 
+      - UID=991
+      - GID=991
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    when:
+      branch: master
+      event: [push, tag, deployment]
