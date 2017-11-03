@@ -7,8 +7,6 @@ pipeline:
     tags: 
       - latest
     dockerfile: Dockerfile
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
 
   push:
     image: xataz/docker-drone-plugin
