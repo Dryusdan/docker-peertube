@@ -1,19 +1,12 @@
 pipeline:
   build:
     image: plugins/docker
-    repo: registry.dryusdan.fr/dryusdan/peertube
     registry: registry.dryusdan.fr
-    action: build
-    tags: 
-      - latest
+    repo: registry.dryusdan.fr/dryusdan/peertube
+    secrets: [ docker_username, docker_password ]
 
   push:
-    image: xataz/docker-drone-plugin
-    repo: registry.dryusdan.fr/dryusdan/peertube
-    registry: registry.dryusdan.fr
-    username: $PRIVATE_LOGIN
-    password: $PRIVATE_PASSWORD
-    action: push
-    when:
-      branch: master
-      event: [push, tag, deployment]
+    image: appleboy/drone-git-push
+    branch: master
+    remote: git@github.com:Dryusdan/docker-peertube.git
+    secrets: [ git_push_ssh_key ]
