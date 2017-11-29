@@ -16,6 +16,7 @@ sed -i -e 's|<https>|'${HTTPS}'|' \
 		-e 's|<transcoding_threads>|'${TRANSCODING_THREADS}'|' \
   		-e 's|<cache_size>|'${CACHE_SIZE}'|' \
   		-e 's|<signup_limit>|'${SIGNUP_LIMIT}'|' \
+		-e 's|<video_quota>|'${VIDEO_QUOTA}'|' \
   		-e 's|<resolution_280>|'${RESOLUTION_280}'|' \
   		-e 's|<resolution_360>|'${RESOLUTION_360}'|' \
   		-e 's|<resolution_480>|'${RESOLUTION_480}'|' \
