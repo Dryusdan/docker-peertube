@@ -22,7 +22,6 @@ ENV UID=991 GID=991 \
 	RESOLUTION_1080=true \
 	DEBIAN_FRONTEND=noninteractive
 
-
 RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get -y install curl \
@@ -46,7 +45,6 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& rm -rf /usr/share/man/?? \
 	&& rm -rf /usr/share/man/??_* 
 
-
 EXPOSE 8080
 
 COPY rootfs /
@@ -54,5 +52,7 @@ COPY rootfs /
 RUN chmod +x /usr/local/bin/startup
 
 WORKDIR /PeerTube/
+
 VOLUME ["/PeerTube/certs", "/PeerTube/videos", "/PeerTube/logs", "/PeerTube/previews", "/PeerTube/thumbnails", "/PeerTube/torrents"]
+
 ENTRYPOINT ["/usr/local/bin/startup"]
