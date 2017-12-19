@@ -28,7 +28,7 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& apt-get -y install curl \
 	&& apt-get -y --no-install-recommends  install ffmpeg openssl git build-essential nginx-light \
 	&& apt-get clean \
-	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+	&& curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get update \
