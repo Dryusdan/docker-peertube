@@ -36,8 +36,8 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
 	&& apt-get -y install -y nodejs yarn --no-install-recommends \
 	&& git clone --branch develop https://github.com/Chocobozzz/PeerTube /PeerTube \
 	&& cd /PeerTube \
-	&& npm install -g \
-	&& yarn global install \
+	&& su - peertube -c "cd /PeerTube && npm install" \
+	&& su - peertube -c "cd /PeerTube && yarn install" \
 	&& su - peertube -c "cd /PeerTube && npm run build" \
 	&& apt-get remove --purge --yes build-essential curl git  \
 	&& apt-get autoremove -y \
