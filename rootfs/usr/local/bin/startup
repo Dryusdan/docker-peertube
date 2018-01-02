@@ -1,7 +1,9 @@
 #!/bin/sh
 
-#addgroup --gid ${GID} peertube && adduser --disabled-password --shell /bin/sh --gid ${GID} --uid ${UID} --gecos "" peertube
-groupadd -g ${GID} peertube && useradd -u ${UID} -M -g ${GID} peertube
+#groupadd -g ${GID} peertube && useradd -u ${UID} -M -g ${GID} peertube
+
+usermod -u ${GID} peertube
+groupmod -g ${UID} peertube
 
 sed -i -e 's|<https>|'${HTTPS}'|' \
 		-e 's|<hostname>|'${HOSTNAME}'|' \

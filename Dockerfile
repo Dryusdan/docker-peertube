@@ -23,7 +23,8 @@ ENV UID=991 GID=991 \
 	RESOLUTION_1080=true \
 	DEBIAN_FRONTEND=noninteractive
 
-RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
+RUN echo "groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
+	&& deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get -y install curl \
 	&& apt-get -y --no-install-recommends  install ffmpeg openssl git build-essential nginx-light \
@@ -35,9 +36,9 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	&& apt-get -y install -y nodejs yarn --no-install-recommends \
 	&& git clone --branch develop https://github.com/Chocobozzz/PeerTube /PeerTube \
 	&& cd /PeerTube \
-	&& npm install \
-	&& yarn install \
-	&& npm run build \
+	&& su - peertube -c "cd /PeerTube && npm install" \
+	&& su - peertube -c "cd /PeerTube && yarn install" \
+	&& su - peertube -c "cd /PeerTube && npm run build" \
 	&& apt-get remove --purge --yes build-essential curl git  \
 	&& apt-get autoremove -y \
 	&& apt-get clean \
