@@ -23,8 +23,8 @@ ENV UID=991 GID=991 \
 	RESOLUTION_1080=true \
 	DEBIAN_FRONTEND=noninteractive
 
-RUN echo "groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
-	&& deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
+RUN groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
+	&& echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get -y install curl \
 	&& apt-get -y --no-install-recommends  install ffmpeg openssl git build-essential nginx-light \
