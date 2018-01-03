@@ -27,7 +27,9 @@ sed -i -e 's|<https>|'${HTTPS}'|' \
 
 sed -i -e 's|<body_size>|'${BODY_SIZE}'|' /etc/nginx/sites-enabled/peertube.conf
 
-chown -R $UID:$GID ./
+chown -R $UID:$GID /home/peertube
+chown -R $UID:$GID /PeerTube
+
 nginx
 if [ $# -eq 0 ]; then
    su - peertube -c "cd /PeerTube && NODE_ENV=production npm start"
