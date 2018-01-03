@@ -23,7 +23,7 @@ ENV UID=991 GID=991 \
 	RESOLUTION_1080=true \
 	DEBIAN_FRONTEND=noninteractive
 
-RUN groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
+RUN groupadd -g 991 peertube && useradd -u 991 -g 991  --create-home peertube \
 	&& echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get -y install curl \
