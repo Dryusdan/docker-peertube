@@ -36,6 +36,7 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
 	&& apt-get -y install -y nodejs yarn --no-install-recommends \
 	&& git clone --branch develop https://github.com/Chocobozzz/PeerTube /PeerTube \
 	&& cd /PeerTube \
+        && ls /home \
 	&& su - peertube -c "cd /PeerTube && npm install" \
 	&& su - peertube -c "cd /PeerTube && yarn install" \
 	&& su - peertube -c "cd /PeerTube && npm run build" \
