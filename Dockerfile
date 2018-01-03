@@ -34,11 +34,16 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991 peertube \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
 	&& apt-get update \
 	&& apt-get -y install -y nodejs yarn --no-install-recommends \
+	&& echo "****** Clone Peertube ******" \
 	&& git clone --branch develop https://github.com/Chocobozzz/PeerTube /PeerTube \
+	&& echo "****** chown ******" \
 	&& chown -R peertube:peertube PeerTube \
         && cd /PeerTube \
+	&& echo "****** run npm install as user ******" \
 	&& su - peertube -c "cd /PeerTube && npm install" \
+        && echo "****** run yarn install as user ******" \
 	&& su - peertube -c "cd /PeerTube && yarn install" \
+        && echo "****** run npm run build as user ******" \
 	&& su - peertube -c "cd /PeerTube && npm run build" \
 	&& apt-get remove --purge --yes build-essential curl git  \
 	&& apt-get autoremove -y \
