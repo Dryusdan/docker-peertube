@@ -1,5 +1,7 @@
 FROM debian:jessie-slim
 
+ARG PEERTUBE_VER=develop
+
 ENV UID=991 GID=991 \
 	HTTPS=false \
 	HOSTNAME=peertube.localhost \
@@ -35,15 +37,15 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991  --create-home peertube \
 	&& apt-get update \
 	&& apt-get -y install -y nodejs yarn --no-install-recommends \
 	&& echo "****** Clone Peertube ******" \
-	&& git clone --branch develop https://github.com/Chocobozzz/PeerTube /PeerTube \
+	&& git clone --branch ${PEERTUBE_VER} https://github.com/Chocobozzz/PeerTube /PeerTube \
 	&& echo "****** chown ******" \
 	&& chown -R peertube:peertube PeerTube \
-        && cd /PeerTube \
+    && cd /PeerTube \
 	&& echo "****** run npm install as user ******" \
 	&& su - peertube -c "cd /PeerTube && npm install" \
-        && echo "****** run yarn install as user ******" \
+    && echo "****** run yarn install as user ******" \
 	&& su - peertube -c "cd /PeerTube && yarn install" \
-        && echo "****** run npm run build as user ******" \
+    && echo "****** run npm run build as user ******" \
 	&& su - peertube -c "cd /PeerTube && npm run build" \
 	&& apt-get remove --purge --yes build-essential curl git  \
 	&& apt-get autoremove -y \
