@@ -1,5 +1,7 @@
 FROM alpine:3.7
 
+ARG PEERTUBE_VER=develop
+
 ENV UID=991 GID=991 \
         HTTPS=false \
         HOSTNAME=peertube.localhost \
