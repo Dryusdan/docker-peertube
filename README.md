@@ -10,14 +10,20 @@ A docker image for [PeerTube](https://github.com/Chocobozzz/PeerTube/) the feder
 - Based on a Debian Jessie (slim image base of 80MB)
 
 #### Build-time variables
-- **PEERTUBE_VER** : version of PeerTube. (upcoming, not yet supported)
+- **PEERTUBE_VER** : version of PeerTube.
 
 #### Environment variables
-- **GID** : isso group id *(default : 991)*
-- **UID** : isso user id *(default : 991)*
+- **GID** : peertube group id *(default : 991)*
+- **UID** : peertube user id *(default : 991)*
 
 #### Volumes
-- **/PeerTube** : location of certs, assets, torrents and logs.
+- **/PeerTube/avatars** : location of users avatars.
+- **/PeerTube/certs** : location of certs.
+- **/PeerTube/videos** : location of videos.
+- **/PeerTube/logs** : location of logs.
+- **/PeerTube/previews** : location of video preview image.
+- **/PeerTube/thumbnails** : location of thumbnails.
+- **/PeerTube/torrents** : location of torrents.
 
 #### Example of simple configuration
 
