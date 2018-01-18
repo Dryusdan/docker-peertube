@@ -26,7 +26,13 @@ ENV UID=991 GID=991 \
         DEBIAN_FRONTEND=noninteractiv
 
 RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /home/peertube peertube \
-	&& apk -U add curl ffmpeg openssl git nginx yarn nodejs build-base su-exec shadow python \
+	&& apk -U upgrade \
+    	&& apk add -t build-dependencies \
+       		git \
+       		build-base \
+       		g++ \
+       		python \
+	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow \
 	&& git clone --branch ${PEERTUBE_VER} https://github.com/Chocobozzz/PeerTube /PeerTube \
         && echo "****** chown ******" \
         && chown -R peertube:peertube PeerTube \
