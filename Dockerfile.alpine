@@ -31,8 +31,9 @@ RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /hom
        		git \
        		build-base \
        		g++ \
-       		python \
-	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow \
+       		python-dev \
+	&& apk add vips-dev fftw-dev vips fftw --update-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow python \
 	&& git clone --branch ${PEERTUBE_VER} https://github.com/Chocobozzz/PeerTube /PeerTube \
         && echo "****** chown ******" \
         && chown -R peertube:peertube PeerTube \
