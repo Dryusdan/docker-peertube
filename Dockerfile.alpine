@@ -32,11 +32,11 @@ RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /hom
         && chown -R peertube:peertube PeerTube \
  	&& cd /PeerTube \
         && echo "****** run npm install as user ******" \
-        && su-exec peertube:peertube "cd /PeerTube && npm install" \
+        && su-exec peertube:peertube npm install \
 	&& echo "****** run yarn install as user ******" \
-        && su-exec peertube:peertube "cd /PeerTube && yarn install" \
+        && su-exec peertube:peertube yarn install \
 	&& echo "****** run npm run build as user ******" \
-	&& su-exec peertube:peertube "cd /PeerTub && npm run build" \
+	&& su-exec peertube:peertube npm run build \
 	&& apk del git build-base \
 	&& rm -rf /tmp/* /PeerTube.git  /var/cache/apk/* 
 
