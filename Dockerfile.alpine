@@ -31,20 +31,21 @@ RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /hom
        		git \
        		build-base \
        		g++ \
-       		python-dev \
+       		python-dev 
+			make \
 	&& apk add vips-dev fftw-dev vips fftw --update-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
-	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow python \
+	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow python py-jinja2 bash \
 	&& git clone --branch ${PEERTUBE_VER} https://github.com/Chocobozzz/PeerTube /PeerTube \
-        && echo "****** chown ******" \
-        && chown -R peertube:peertube PeerTube \
+    && echo "****** chown ******" \
+    && chown -R peertube:peertube PeerTube \
  	&& cd /PeerTube \
-        && echo "****** run npm install as user ******" \
-        && su-exec peertube:peertube npm install \
+    && echo "****** run npm install as user ******" \
+    && su-exec peertube:peertube npm install \
 	&& echo "****** run yarn install as user ******" \
-        && su-exec peertube:peertube yarn install \
+    && bash -c "su-exec peertube:peertube yarn install" \
 	&& echo "****** run npm run build as user ******" \
-	&& su-exec peertube:peertube npm run build \
-	&& apk del git build-base \
+	&& bash -c "su-exec peertube:peertube npm run buildé \
+	&& apk del build-dependencies \
 	&& rm -rf /tmp/* /PeerTube.git  /var/cache/apk/* 
 
 EXPOSE 8080
