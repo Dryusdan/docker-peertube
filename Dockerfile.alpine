@@ -31,7 +31,7 @@ RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /hom
        		git \
        		build-base \
        		g++ \
-       		python-dev 
+       		python-dev \
 			make \
 	&& apk add vips-dev fftw-dev vips fftw --update-cache --repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
 	&& apk -U add yarn ffmpeg libressl su-exec curl nodejs shadow python py-jinja2 bash \
@@ -44,7 +44,7 @@ RUN addgroup -g 991 peertube && adduser -u 991 -G peertube -s /bin/sh -D -h /hom
 	&& echo "****** run yarn install as user ******" \
     && bash -c "su-exec peertube:peertube yarn install" \
 	&& echo "****** run npm run build as user ******" \
-	&& bash -c "su-exec peertube:peertube npm run buildé \
+	&& bash -c "su-exec peertube:peertube npm run build \
 	&& apk del build-dependencies \
 	&& rm -rf /tmp/* /PeerTube.git  /var/cache/apk/* 
 
