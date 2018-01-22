@@ -6,6 +6,13 @@ pipeline:
     repo: registry.dryusdan.fr/dryusdan/peertube
     dockerfile: Dockerfile.debian
     secrets: [ docker_username, docker_password ]
+    
+  build-alpine:
+    image: plugins/docker
+    registry: registry.dryusdan.fr
+    repo: registry.dryusdan.fr/dryusdan/peertube:alpine
+    dockerfile: Dockerfile.debian
+    secrets: [ docker_username, docker_password ]
 
   push:
     image: appleboy/drone-git-push
