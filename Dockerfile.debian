@@ -51,7 +51,7 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991  --create-home peertube \
 	&& apt-get autoremove -y \
 	&& apt-get clean \
 	&& rm -rf /PeerTube/.git \
-	&& rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \
+	&& rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old /home/peertube/.npm \
 	&& rm -rf /usr/share/man/?? \
 	&& rm -rf /usr/share/man/??_* 
 
