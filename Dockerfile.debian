@@ -29,7 +29,7 @@ RUN groupadd -g 991 peertube && useradd -u 991 -g 991  --create-home peertube \
 	&& echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-free" >> /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get -y install curl \
-	&& apt-get -y --no-install-recommends  install ffmpeg openssl git build-essential nginx-light \
+	&& apt-get -y --no-install-recommends  install ffmpeg openssl git build-essential nginx-light redis-server \
 	&& apt-get clean \
 	&& curl -sL https://deb.nodesource.com/setup_8.x | bash - \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
